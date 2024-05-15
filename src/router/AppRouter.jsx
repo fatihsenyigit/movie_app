@@ -3,6 +3,7 @@ import Main from "../pages/Main";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import MovieDetail from "../pages/MovieDetail";
+import Navbar from "../components/Navbar";
 
 
 
@@ -10,6 +11,7 @@ import MovieDetail from "../pages/MovieDetail";
 const AppRouter = () => {
   return (
     <div>
+        <Navbar/>
         <Routes>
             <Route path="/" element={<Main/>}/>
             <Route path="/login" element={<Login/>}/>
