@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import Switch from "./Switch";
 import avatar from '../assets/icons/avatar.png'
+import { useAuthContext } from "../context/AuthProvider";
 
 
 
@@ -11,8 +12,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-    const currentUser = {displayName:'fatih senyigit'}
-    // const currentUser = false
+    const {currentUser} = useAuthContext()
+    
   return (
     <>
       <Disclosure
