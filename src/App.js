@@ -1,12 +1,14 @@
 
 import './App.css';
-import Register from "./pages/Register";
 import AppRouter from './router/AppRouter';
+import AuthProvider from './context/AuthProvider';
 
 function App() {
   return (
     <div className="dark:bg-gray-dark-main min-h-screen">
-      <AppRouter/>
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
     </div>
   );
 }
