@@ -27,7 +27,7 @@ const MovieProvider = ({ children }) => {
       useEffect(() => {
         getMovies(FEATURED_API);
       }, []);
-  return <MovieContext.Provider value={null}>{children}</MovieContext.Provider>;
+  return <MovieContext.Provider value={{movies, loading, getMovies}}>{children}</MovieContext.Provider>;
 };
 
 export default MovieProvider
