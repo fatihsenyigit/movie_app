@@ -13,11 +13,13 @@ const Login = () => {
     password: "",
   });
 
-  const { loginUser } = useAuthContext();
+  const { loginUser, googleProvider, forgotPassword } = useAuthContext();
 
   const handleChange = (e) =>
     setInfo({ ...info, [e.target.name]: e.target.value });
+  
   const { email, password } = info;
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(email, password);
@@ -55,7 +57,7 @@ const Login = () => {
             </div>
             <div className="flex justify-between">
               <span
-                // onClick={() => forgotPassword(email)}
+                onClick={() => forgotPassword(email)}
                 className="py-3 font-[0.75em] cursor-pointer decoration-none text-gray-500 hover:text-[#ff4b45]"
               >
                 Forgot Password
@@ -73,6 +75,7 @@ const Login = () => {
             <button
               className="flex justify-between text-center items-center btn-danger"
               type="button"
+              onClick={() => googleProvider()}
             >
               Continue with Google
               <GoogleIcon color="currentColor" />

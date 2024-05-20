@@ -5,13 +5,14 @@ import { useAuthContext } from "../context/AuthProvider";
 const Register = () => {
   const [info, setInfo] = useState({firstName:'', lastName:'', email:'',password:''})
   
-  const {createUser} = useAuthContext()
+  const { createUser, googleProvider } = useAuthContext();
 
   const handleChange = (e) => setInfo({...info, [e.target.name]:e.target.value})
-  const {email, password} = info;
+  const {email, password, firstName, lastName} = info;
   const handleSubmit = (e) => {
     e.preventDefault()
-    createUser(email, password)
+    const displayName = `${firstName} ${lastName}`
+    createUser(email, password, displayName);
   }
   return (
     <div className="flex justify-center">
@@ -71,6 +72,7 @@ const Register = () => {
             <button
               className="flex justify-between text-center items-center btn-danger"
               type="button"
+              onClick={()=>googleProvider()}
             >
               Continue with Google
               <GoogleIcon color="currentColor" />
