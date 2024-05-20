@@ -72,6 +72,7 @@ const AuthProvider = ({ children }) => {
        );
       } else {
         setCurrentUser(false)
+        sessionStorage.removeItem("currentUser");
       }
     });
   }
