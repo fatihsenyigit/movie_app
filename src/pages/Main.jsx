@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMovieContext } from "../context/MovieProvider";
 import MovieCard from "../components/MovieCard";
-import { toastWarnNotify } from "../helpers/ToastNotify";
+import { toastWarnNotify } from "../helperss/ToastNotify";
 import { useAuthContext } from "../context/AuthProvider";
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
@@ -23,7 +23,6 @@ const Main = () => {
     }
   };
 
-  console.log({ movies, loading });
   return (
     <div>
       <form onSubmit={handleSubmit} className="flex justify-center p-2">

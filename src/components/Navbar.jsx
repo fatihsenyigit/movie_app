@@ -2,18 +2,15 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import Switch from "./Switch";
-import avatar from '../assets/icons/avatar.png'
+import avatar from "../assestss/icons/avatar.png";
 import { useAuthContext } from "../context/AuthProvider";
-
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-    const {currentUser, logOut} = useAuthContext()
-    
+  const { currentUser, logOut } = useAuthContext();
   return (
     <>
       <Disclosure
@@ -23,7 +20,7 @@ export default function Navbar() {
         <div className="mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between">
             <Link className="pr-2 text-2xl font-semibold" to="/">
-              React Movie App
+            Movie App
             </Link>
 
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -31,7 +28,6 @@ export default function Navbar() {
                 <h5 className="mr-2 capitalize">{currentUser?.displayName} </h5>
               )}
               <Switch />
-              {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>
                   <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">

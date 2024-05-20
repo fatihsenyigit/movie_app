@@ -1,9 +1,5 @@
-
-
-
-
 import React, { useState } from "react";
-import GoogleIcon from "../assets/icons/GoogleIcon";
+import GoogleIcon from "../assestss/icons/GoogleIcon";
 import { useAuthContext } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 
@@ -13,22 +9,22 @@ const Login = () => {
     password: "",
   });
 
-  const { loginUser, googleProvider, forgotPassword } = useAuthContext();
+  const { signIn, googleProvider, forgotPassword } = useAuthContext();
 
   const handleChange = (e) =>
     setInfo({ ...info, [e.target.name]: e.target.value });
-  
+
   const { email, password } = info;
-  
-  const handleSubmit = (e) => {
+  const handlesubmit = (e) => {
     e.preventDefault();
-    loginUser(email, password);
+    signIn(email, password);
   };
+
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center">
       <div className="overflow-hidden flex-1 h-screen justify-center items-center dark:bg-gray-dark-main">
         <div className={`form-container mt-[5vh] w-[380px] h-[500px] `}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handlesubmit}>
             <h2 className="text-red-main text-2xl font-[500] text-center tracking-[0.1em] mb-3">
               Sign In
             </h2>

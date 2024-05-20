@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../auth/firebase";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { auth } from "../authh/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -11,7 +11,11 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from "../helpers/ToastNotify";
+import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from "../helperss/ToastNotify";
 
 const AuthContext = createContext();
 
@@ -23,23 +27,22 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("currentUser")) || false,
   );
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-  userObserver()
-  }, [])
-  
+    userObserver();
+  }, []);
 
   const createUser = async (email, password, displayName) => {
     try {
-     await createUserWithEmailAndPassword(auth, email, password);
-     await updateProfile(auth.currentUser, {
-       displayName: displayName
-     })
-     navigate("/login");
-     toastSuccessNotify('registered successfully')
+      await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, {
+        displayName: displayName,
+      });
+      navigate("/login");
+      toastSuccessNotify("registered successfully");
     } catch (error) {
-      toastErrorNotify(error.message)
+      toastErrorNotify(error.message);
     }
   };
   const loginUser = async (email, password) => {
@@ -53,53 +56,55 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    signOut(auth).then(()=> {
+    signOut(auth)
+      .then(() => {
         toastSuccessNotify("loggout in successfully");
-        navigate('/login')
-    }).catch((error)=>{
+        navigate("/login");
+      })
+      .catch((error) => {
         toastErrorNotify(error.message);
-    })
-  }
+      });
+  };
 
   const userObserver = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const {email, displayName, photoURL} = user
-       setCurrentUser({ email, displayName, photoURL });
-       sessionStorage.setItem(
-         "currentUser",
-         JSON.stringify({ email, displayName, photoURL }),
-       );
+        const { email, displayName, photoURL } = user;
+        setCurrentUser({ email, displayName, photoURL });
+        sessionStorage.setItem(
+          "currentUser",
+          JSON.stringify({ email, displayName, photoURL }),
+        );
       } else {
-        setCurrentUser(false)
+        setCurrentUser(false);
         sessionStorage.removeItem("currentUser");
       }
     });
-  }
+  };
 
   const googleProvider = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        navigate('/')
-        toastSuccessNotify('logged in successfully')
+        navigate("/");
+        toastSuccessNotify("logged in successfully");
       })
       .catch((error) => {
-       toastErrorNotify(error.message)
+        toastErrorNotify(error.message);
       });
-  }
+  };
 
   const forgotPassword = (email) => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        toastWarnNotify('check your mail box')
+        toastWarnNotify("check your mail box");
       })
       .catch((error) => {
-        toastErrorNotify(error.message)
+        toastErrorNotify(error.message);
       });
   };
 
-  console.log(currentUser)
+  console.log(currentUser);
 
   const values = {
     currentUser,
