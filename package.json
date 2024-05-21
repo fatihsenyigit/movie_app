@@ -2,7 +2,7 @@
   "name": "movie_app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://felix.githup.io/movie_app",
+  "homepage": "http://fatihsenyigit.githup.io/movie_app",
   "dependencies": {
     "@headlessui/react": "^2.0.3",
     "@heroicons/react": "^2.1.3",
